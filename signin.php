@@ -33,13 +33,16 @@ if(isset($_SESSION['name'])){
 
             if ($rows == 1) {
               $name = "";
+              $id = "";
               while ($rows = mysqli_fetch_assoc($results)) {
                 $name = $rows["name"];
+                $id = $rows["id"];
               }
 
 
               session_start();
               $_SESSION["name"] = $name;
+              $_SESSION["id"] = $id;
               header("Location: index.php");
             } else {
               echo "<div class='alert alert-danger' role='alert'>Email or password is incorrect</div>";
