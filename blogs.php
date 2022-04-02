@@ -1,7 +1,7 @@
 <!-- Header -->
 <?php
-@include './components/header.php';
-@include './database/configure.php';
+@include './componants/header.php';
+@include './database/configer.php';
 ?>
 
 <section class="topHeader pt-5 pt-md-0 mt-5">
@@ -262,5 +262,5 @@
 
 <!-- Footer -->
 <?php
-@include './components/footer.php';
+@include './componants/footer.php';
 ?>

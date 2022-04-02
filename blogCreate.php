@@ -32,9 +32,10 @@
            if($result && $title && $desc && $id){
              echo "<div class='alert alert-success' role='alert'> Blog Created successfully
              </div>";
+             header("Location: dashboard.php");
              }else{
                 echo "<div class='alert alert-danger' role='alert'>Blog not create.</div>";
-                echo mysqli_error($conn);
+                
             }
 
         }

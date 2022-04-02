@@ -6,8 +6,8 @@ if (!isset($_SESSION['name'])) {
 }
 ?>
 <!--Use the bellow code for the modal-->
-<div class="d-block">
-  <section class="container bg-white card card-body shadow shadow-sm">
+<div class="d-block pt-5">
+  <section class="container bg-white card card-body shadow shadow-sm pt-5 mt-5">
     <p class="font-weight-lighter text-center bg-light py-2 mb-4 h3">
       <strong>Edit Profile</strong>
     </p>
