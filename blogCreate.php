@@ -14,47 +14,44 @@
         </p>
 
       <?php
-        if(isset($_POST['submit'])){
-          $title = stripcslashes($_POST["title"]);
+        if((isset($_POST['submit'])) || ($_SERVER['REQUEST_METHOD'] == "POST")){
+          $title = stripslashes($_POST["title"]);
           $title = mysqli_real_escape_string($conn, $title);
 
-          $desc = stripcslashes($_POST["desc"]);
+          $desc = stripslashes($_POST["desc"]);
           $desc = mysqli_real_escape_string($conn, $desc);
 
           
           $created_at = date("Y-m-d H:i:s");
           $id = $_SESSION["id"];
+          
           $imageName = $_FILES['image']['name'];
+          $tmp_name  = $_FILES['image']['tmp_name'];
+	      $uploc     = 'img/'.$imageName;
+          $imgtype   = $_FILES['image']['type'];
+          $imgsize   = $_FILES['image']['size'];
 
-	      $tmp_name = $_FILES['image']['tmp_name'];
-	      $uploc   = 'img/'.$imageName;
+          if(($imgtype == 'image/png') || ($imgtype == 'image/jpg') && ($imgsize < 200000)){
+            
+              $query = "INSERT INTO `blogs` (title, description, image, active, user_id, created_at) 
+                     VALUES('$title', '$desc', '$imageName', '1', '$id', '$created_at')";
 
-          $query = "INSERT INTO `blogs` (title, description, image, active, user_id, created_at) 
-                                  VALUES('$title', '$desc', '$imageName', '1', '$id', '$created_at')";
-
-          $result = mysqli_query($conn, $query);
-          if($result){
-            move_uploaded_file($tmp_name, $uploc);
-            echo "Data Inserted";
-            if($result && $title && $desc && $id){
-              echo "<div class='alert alert-success' role='alert'> Blog Created successfully
-              </div>";
-              header("Location: dashboard.php");
-              }else{
-                 echo "<div class='alert alert-danger' role='alert'>Blog not create.</div>";
+              $result = mysqli_query($conn, $query);
                  
-             }
-         }else{
-            echo "Data not inserted";
-         }
+                     move_uploaded_file($tmp_name, $uploc);
+                    header("Location: dashboard.php");
+                          
+            }else{
+                echo "<div class='alert alert-danger' role='alert'>Invalid Image Type
+                </div>";
+          }
 
-    }else{
-      echo "wrong";
-  }
+           
+       }
 
         ?>
 
-        <form class="container" action="" method="POST" enctype="multipart/form-data">
+        <form class="container" action="#" method="POST" enctype="multipart/form-data">
             <fieldset class="fieldset">
                 <div class="form-group">
                     <label class="col-md-12 control-label">Title</label>
