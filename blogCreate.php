@@ -14,35 +14,47 @@
         </p>
 
       <?php
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(isset($_POST['submit'])){
           $title = stripcslashes($_POST["title"]);
           $title = mysqli_real_escape_string($conn, $title);
 
           $desc = stripcslashes($_POST["desc"]);
           $desc = mysqli_real_escape_string($conn, $desc);
 
-          $image = $_POST["img"];
+          
           $created_at = date("Y-m-d H:i:s");
           $id = $_SESSION["id"];
+          $imageName = $_FILES['image']['name'];
 
-          $query = "INSERT INTO `blogs` (title, description, image, active, user_id, created_at) VALUES('$title', '$desc', '$image', '1', '$id', '$created_at')";
+	      $tmp_name = $_FILES['image']['tmp_name'];
+	      $uploc   = 'img/'.$imageName;
+
+          $query = "INSERT INTO `blogs` (title, description, image, active, user_id, created_at) 
+                                  VALUES('$title', '$desc', '$imageName', '1', '$id', '$created_at')";
 
           $result = mysqli_query($conn, $query);
+          if($result){
+            move_uploaded_file($tmp_name, $uploc);
+            echo "Data Inserted";
+            if($result && $title && $desc && $id){
+              echo "<div class='alert alert-success' role='alert'> Blog Created successfully
+              </div>";
+              header("Location: dashboard.php");
+              }else{
+                 echo "<div class='alert alert-danger' role='alert'>Blog not create.</div>";
+                 
+             }
+         }else{
+            echo "Data not inserted";
+         }
 
-           if($result && $title && $desc && $id){
-             echo "<div class='alert alert-success' role='alert'> Blog Created successfully
-             </div>";
-             header("Location: dashboard.php");
-             }else{
-                echo "<div class='alert alert-danger' role='alert'>Blog not create.</div>";
-                
-            }
-
-        }
+    }else{
+      echo "wrong";
+  }
 
         ?>
 
-        <form class="container" action="" method="POST">
+        <form class="container" action="" method="POST" enctype="multipart/form-data">
             <fieldset class="fieldset">
                 <div class="form-group">
                     <label class="col-md-12 control-label">Title</label>
@@ -68,7 +80,7 @@
 
                     <div class="col-md-6 offset-md-3 text-center pb-3">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input outline-primary" id="customFile" name="img" />
+                            <input type="file" class="custom-file-input outline-primary" id="customFile" name="image" />
                             <label class="custom-file-label bg-light" for="customFile">
                                 <i class="fas fa-image text-primary"></i>
                                 Choose file</label>
@@ -79,7 +91,7 @@
             <hr />
             <div class="form-group">
                 <div class="text-center">
-                    <input class="btn btn-primary" type="submit" value="Create Article" />
+                    <input class="btn btn-primary" type="submit" name="submit" value="Create Article" />
                     <button class="btn btn-outline-danger px-3 ml-2">Cancel</button>
                 </div>
             </div>

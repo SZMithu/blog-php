@@ -44,17 +44,18 @@ if (!isset($_SESSION['name'])) {
                              $result = mysqli_query($conn, $query);
                              $rows = mysqli_num_rows($result);
                              $row = mysqli_fetch_assoc($result);
- $title = "";
+                             $title = "";
+                             $image = "";
                             if ($rows > 0) {
                                   // OUTPUT DATA OF EACH ROW
                             while($row = mysqli_fetch_assoc($result)){
                                 $title = $row["title"];
-                                
+                                $image = $row["image"];
                             echo '<div class="col-md-6 mb-4">
                                     <div class="card text-left singleCardAllPost shadow shadow-sm">
                                         <div class="">
                                           <a href="#">
-                                           <img src="'.$row["image"].'" class="card-img-top" alt="" />
+                                           <img src="img/'.$image.'" class="card-img-top" alt="" />
                                           </a>
                                          <div class="pr-4 pt-4 text-right">
                                           <a class="dropdown-toggle" href="#" id="optionDropdown" role="button" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
