@@ -7,7 +7,7 @@
 
 <!-- Body -->
     <!--Use the bellow code for modal-->
-    <div class="d-block bgLightBlue mt-5">
+    <div class="d-block bgLightBlue mt-5 pt-5">
       <section class="container bg-white card card-body shadow shadow-sm">
         <div class="col-lg-12">
           <div
