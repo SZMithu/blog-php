@@ -42,7 +42,7 @@
                     header("Location: dashboard.php");
                           
             }else{
-                echo "<div class='alert alert-danger' role='alert'>Invalid Image Type
+                echo "<div class='alert alert-danger' role='alert'>Invalid Image Type or size.
                 </div>";
           }
 
