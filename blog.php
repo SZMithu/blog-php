@@ -7,6 +7,25 @@
 
 <!-- Body -->
     <!--Use the bellow code for modal-->
+    <?php
+                             
+                             $id = $_SESSION["id"];
+                             $query = "SELECT * FROM `blogs` WHERE user_id = $id ORDER BY created_at ASC";
+                             $result = mysqli_query($conn, $query);
+                             $rows = mysqli_num_rows($result);
+                             $title = "";
+                             $image = "";
+                            
+                             if ($rows) {
+                                  // OUTPUT DATA OF EACH ROW
+                            while($row = mysqli_fetch_assoc($result)){
+                                $title = $row["title"];
+                                $image = $row["image"];
+                                
+                            }
+                          }
+    ?>
+
     <div class="d-block bgLightBlue mt-5 pt-5">
       <section class="container bg-white card card-body shadow shadow-sm">
         <div class="col-lg-12">
@@ -15,12 +34,12 @@
             style="width: 100%; max-height: 250px; overflow: hidden"
           >
             <img
-              src="https://mdbootstrap.com/img/Photos/Others/photo13.jpg"
-              alt="Image"
+              src="../img/<?php echo $image ?>"
+              alt="image"
               class="img-fluid w-100"
             />
           </div>
-          <h1 class="mb-4">New title</h1>
+          <h1 class="mb-4"><?php echo $title  ?></h1>
           <div class="d-flex mb-5">
             <div class="mr-3">
               <img
