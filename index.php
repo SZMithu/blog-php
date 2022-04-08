@@ -78,11 +78,11 @@
                                 //Grid column
                       echo '<div class="col-lg-3 col-md-6 mb-4">
                               <div class="card text-left singleCardAllPost shadow shadow-sm">
-                                <div class="">
-                                  <a href="#">
+                                <div class="card-image">
+                                   <a href="#">
                                     <img src="img/'.$image.'" class="card-img-top img-fliud" alt="" />
-                                  </a>
-                                  <div class="pr-4 pt-4 text-right">
+                                   </a>
+                                    <div class="pr-4 pt-4 text-right">
                                       <a class="dropdown-toggle" href="#" id="optionDropdown" role="button" data-toggle="dropdown"     aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-cog"></i>
                                       </a>
@@ -93,7 +93,8 @@
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="card-body mt-0 pt-0 mx-4" style="height: 300px; overflow: hidden">
+                                
+                                  <div class="card-body mt-0 pt-2 mx-4" style="height: 300px; overflow: hidden">
                                          <h4 class="card-title"><strong>'.$row["title"].'</strong></h4>
                                          <hr />
                                          <p class="text-secondary mb-4">'.$row["description"].'</p>
