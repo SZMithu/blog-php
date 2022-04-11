@@ -2,7 +2,7 @@
 include './componants/header.php';
 include './database/configer.php';
 
-if(isset($_SESSION['name'])){
+if (isset($_SESSION['name'])) {
   header("Location: index.php");
   exit();
 }

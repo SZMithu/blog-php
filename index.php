@@ -69,10 +69,11 @@
                 $rows = mysqli_num_rows($result);
                 $title = "";
                 $image = "";
-                            
+                         
                 if ($rows) {
                      // OUTPUT DATA OF EACH ROW
                   while($row = mysqli_fetch_assoc($result)){
+                 
                         $title = $row["title"];
                         $image = $row["image"];
                                 //Grid column
@@ -100,7 +101,7 @@
                                          <p class="text-secondary mb-4">'.$row["description"].'</p>
                                   </div>
                                     <p class="text-right mb-2 mr-2 text-uppercase font-small spacing font-weight-bold">
-                                    <a href="blog.php" class="textBlue">read more
+                                    <a href="blog.php?id='.$row["id"].'" class="textBlue">read more
                                     <i class="fas fa-chevron-right" aria-hidden="true"></i>
                                     </a>
                                     </p>

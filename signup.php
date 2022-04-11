@@ -47,7 +47,7 @@ if(isset($_SESSION['name'])){
                    if($password==$password2){
                     $result = mysqli_query($conn, $query);
                      if($result){
-                       echo "<div class='alert alert-success' role='alert'>Registration Success</div>";
+                       header("Location: signin.php");
                      }else{
                       echo "<div class='alert alert-danger' role='alert'>Registration Failed</div>";
                      }
