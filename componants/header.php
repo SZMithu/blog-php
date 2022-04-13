@@ -8,15 +8,15 @@
   <title>DevLogger</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
 
-  
+
   <script src="https://kit.fontawesome.com/dfff6eb483.js" crossorigin="anonymous"></script>
-  
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <!-- Body -->
 
-<body class="homepage2">
+<body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
     <a class="navbar-brand text-primary" href="index.php"><span class="fas fa-code"></span> DevLogger</a>
     <a class="top-move" href="#">Go top</a>

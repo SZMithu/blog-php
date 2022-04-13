@@ -4,7 +4,7 @@
 .card-image{
     height: 25%;
 }
-.top-move{
+.top-move {
     position: fixed;
     right: 32px;
     bottom: 16px;
@@ -21,6 +21,7 @@
     opacity: 0;
     transition: all .5s ease;
 }
-body{
+.navbar-brand{
+    color: #fff !important;
     background-color: black !important;
 }
