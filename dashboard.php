@@ -63,7 +63,7 @@ if (!isset($_SESSION['name'])) {
                                     <i class="fas fa-cog"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="optionDropdown">
-                                     <a class="dropdown-item" href="#">Edit</a>
+                                     <a class="dropdown-item" href="editBlog.php?id='.$row["id"].'">Edit</a>
                                      <a class="dropdown-item" href="#">Unpublish</a>
                                      <a class="dropdown-item text-danger" href="#"><strong>Delete</strong></a>
                                     </div>

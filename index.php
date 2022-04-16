@@ -70,7 +70,8 @@
                                    <a href="#">
                                     <img src="img/' . $image . '" class="card-img-top img-fliud" alt="" />
                                    </a>
-                                    <div class="pr-4 pt-4 text-right">
+                                </div>
+                                    <div class="pr-4 text-right">
                                       <a class="dropdown-toggle" href="#" id="optionDropdown" role="button" data-toggle="dropdown"     aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-cog"></i>
                                       </a>
@@ -80,9 +81,9 @@
                                        <a class="dropdown-item text-danger" href="#"><strong>Delete</strong></a>
                                       </div>
                                     </div>
-                                  </div>
+                                  
                                 
-                                  <div class="card-body mt-0 pt-2 mx-4" style="height: 300px; overflow: hidden">
+                                  <div class="card-body mt-0 pt-2 mx-4">
                                          <h4 class="card-title"><strong>' . $row["title"] . '</strong></h4>
                                          <hr />
                                          <p class="text-secondary mb-4">' . $row["description"] . '</p>
