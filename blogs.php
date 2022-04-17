@@ -20,12 +20,13 @@
                 </p>
             </div>
         </div>
+    </div>
 </section>
-<main class="bgLightBlue">
-    <div class="container ">
-        <div class="row">
-            <div class="col-md-12 mt-1">
-                <div class="container mt-3 mb-4">
+ <main class="bgLightBlue">
+     <div class="container ">
+         <div class="row">
+             <div class="col-md-12 mt-1">
+                 <div class="container mt-3 mb-4">
                     <h2 class="text-center font-weight-light pb-3"><i class="fas fa-crown"></i> Article of the month
                     </h2>
                     <div class="card w-100 shadow shadow-sm mb-2">
@@ -54,24 +55,13 @@
                     </div>
                     <!--All Article-->
                     <h2 class="text-center font-weight-light py-3"><i class="fas fa-newspaper"></i> Articles</h2>
-                    <div class="container">
-  <div class="row mt-3 pt-5 pb-3">
-    <div class="card-group">
-      <div class="col-lg-3 col-md-6">
-        <h4 class="font-weight-bold mb-4">
-          <strong class="red-text-2 font-weight-bold"><i class="fas fa-square textBlue mr-2" aria-hidden="true"></i> </strong>Our Latest Articles
-        </h4>
-        <hr class="w-75" />
-        <p class="text-secondary text-justify">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo
-          animi soluta ratione quisquam, dicta ab cupiditate iure eaque?
-          Repellendus voluptatum, magni impedit eaque animi maxime.Soluta
-          ratione quisquam, dicta ab cupiditate iure eaque? Repellendus
-          voluptatum, magni impedit.
-        </p>
-      </div>
-
-      <?php
+    
+                    <!--All Article END-->
+                </div>
+            </div>
+        </div>
+       <div class="card-group"> 
+        <?php
 
       $query = "SELECT * FROM `blogs` ORDER BY created_at DESC";
       $result = mysqli_query($conn, $query);
@@ -92,7 +82,8 @@
                                    <a href="#">
                                     <img src="img/' . $image . '" class="card-img-top img-fliud" alt="" />
                                    </a>
-                                    <div class="pr-4 pt-4 text-right">
+                                </div>
+                                    <div class="pr-4 text-right">
                                       <a class="dropdown-toggle" href="#" id="optionDropdown" role="button" data-toggle="dropdown"     aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-cog"></i>
                                       </a>
@@ -102,9 +93,9 @@
                                        <a class="dropdown-item text-danger" href="#"><strong>Delete</strong></a>
                                       </div>
                                     </div>
-                                  </div>
+                                  
                                 
-                                  <div class="card-body mt-0 pt-2 mx-4" style="height: 300px; overflow: hidden">
+                                  <div class="card-body mt-0 pt-2 mx-4">
                                          <h4 class="card-title"><strong>' . $row["title"] . '</strong></h4>
                                          <hr />
                                          <p class="text-secondary mb-4">' . $row["description"] . '</p>
@@ -123,17 +114,9 @@
       }
 
       ?>
-
-    </div>
-  </div>
-</div>
-                    <!--All Article END-->
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-</main>
+      </div>
+   </div>
+ </main> 
 
 <!-- Footer -->
 <?php
