@@ -41,20 +41,29 @@ if(isset($_SESSION['name'])){
                    $password2 = mysqli_real_escape_string($conn, $password2);
 
                    $create_at = date("Y-m-d H:i:s"); 
+                   
+                   $sql = "SELECT email FROM `users` WHERE email = $email";
+                   $rows = mysqli_query($conn, $sql);
+                   $row = mysqli_num_rows($rows);
 
-                   $query = "INSERT INTO `users` (name, email, phone, password, image, created_at) VALUES('$name', '$email', '', '".md5($password)."', '', '$create_at')";
+                  if(!$rows){
+                    $query = "INSERT INTO `users` (name, email, phone, password, image, created_at) VALUES('$name', '$email', '', '".md5($password)."', '', '$create_at')";
 
-                   if($password==$password2){
-                    $result = mysqli_query($conn, $query);
-                     if($result){
-                       header("Location: signin.php");
-                     }else{
-                      echo "<div class='alert alert-danger' role='alert'>Registration Failed</div>";
-                     }
-
-                   }else{
-                    echo "<div class='alert alert-danger' role='alert'>Password not match</div>";
-                   }
+                    if($password == $password2){
+                     $result = mysqli_query($conn, $query);
+                      if($result){
+                        header("Location: signin.php");
+                      }else{
+                       echo "<div class='alert alert-danger' role='alert'>Registration Failed</div>";
+                      }
+ 
+                    }else{
+                     echo "<div class='alert alert-danger' role='alert'>Password not match</div>";
+                    }
+                  }else{
+                    echo "Email already exist";
+                  }
+                   
                 }
 
 
