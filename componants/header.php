@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- HEADER -->
@@ -10,11 +12,11 @@
 
 
   <script src="https://kit.fontawesome.com/dfff6eb483.js" crossorigin="anonymous"></script>
-
-  <style>
-    <?php include './css/style.css'; ?>
-  </style>
-
+  
+<style>
+<?php include './css/style.css'; ?>
+</style>
+  
 
 </head>
 
