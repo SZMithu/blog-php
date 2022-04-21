@@ -54,6 +54,17 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+--
+-- Table structure for table `comments`
+--
+CREATE TABLE comments (
+	id int(10) PRIMARY KEY AUTO_INCREMENT,
+	blog_id int(10) NOT NULL,
+  user_name varchar(55) NOT NULL,
+	comment text NOT NULL,
+  comment_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 
 --
 -- Indexes for table `blogs`

@@ -8,7 +8,7 @@ if (!isset($_SESSION['name'])) {
 
 <!--Use the bellow code for modal-->
 <div class="d-block bgLightBlue mt-5 pt-5">
-    <section class="container bg-white card card-body shadow shadow-sm mb-4">
+    <section class="container bg-white card card-body shadow shadow-sm">
         <p class="font-weight-lighter text-center bg-light py-2 mb-4 h3">
             <strong>Create Post</strong>
         </p>
@@ -30,9 +30,9 @@ if (!isset($_SESSION['name'])) {
             $uploc     = 'img/' . $imageName;
             $imgtype   = $_FILES['image']['type'];
             $imgsize   = $_FILES['image']['size'];
+            
 
-
-            if (($imgtype == 'image/png') || ($imgtype == 'image/jpeg')) {
+         if (($imgtype == 'image/png') || ($imgtype == 'image/jpeg')) {
 
                 $query = "INSERT INTO `blogs` (title, description, image, active, user_id, created_at) 
                   VALUES('$title', '$desc', '$imageName', '1', '$id', '$created_at')";
@@ -41,10 +41,10 @@ if (!isset($_SESSION['name'])) {
 
                 move_uploaded_file($tmp_name, $uploc);
                 header("Location: dashboard.php");
-            } else {
-                echo "<div class='alert alert-danger' role='alert'>Invalid Image Type or size.
+         } else {
+                 echo "<div class='alert alert-danger' role='alert'>Invalid Image Type or size.
                  </div>";
-            }
+             }
         }
 
         ?>
@@ -69,7 +69,9 @@ if (!isset($_SESSION['name'])) {
                     </div>
                 </div>
                 <div class="form-group px-3">
-
+                    <figure class="col-md-2 offset-md-5">
+                        <img class="rounded img-fluid shadow shadow-sm" src="./img/mahin.jpg" alt="" />
+                    </figure>
 
                     <div class="col-md-6 offset-md-3 text-center pb-3">
                         <div class="custom-file">

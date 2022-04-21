@@ -25,19 +25,18 @@ if (!isset($_SESSION['name'])) {
             $title       = "";
             $desc        = "";
             $imagename   = "";
-          
+
 
             while ($row = mysqli_fetch_assoc($result)) {
                 $title  = $row['title'];
                 $desc   = $row['description'];
                 $image  = $row['image'];
             }
-        
-         }
+        }
 
-         //update post
+        //update post
 
-         if((isset($_POST["submit"])) || ($_SERVER["REQUEST_METHOD"] == "POST")){
+        if ((isset($_POST["submit"])) || ($_SERVER["REQUEST_METHOD"] == "POST")) {
             $newtitle = stripslashes($_POST["title"]);
             $newtitle = mysqli_real_escape_string($conn, $newtitle);
 
@@ -59,21 +58,20 @@ if (!isset($_SESSION['name'])) {
 
                 $newquery = "UPDATE `blogs` SET title = '$newtitle', description = '$newdesc', image = '$imageName', active = '1', user_id = '$user_id', created_at = '$created_at' WHERE id = '$id'";
 
-              $newresult = mysqli_query($conn, $newquery);
-                 if($newresult){
+                $newresult = mysqli_query($conn, $newquery);
+                if ($newresult) {
                     move_uploaded_file($tmp_name, $uploc);
                     header("Location: dashboard.php");
-                 }else{
-                     echo "Can not edit blog ".mysqli_error($conn);
-                 }
-               
-            }else{
-            echo "<div class='alert alert-danger' role='alert'>Invalid Image Type or size.
+                } else {
+                    echo "Can not edit blog " . mysqli_error($conn);
+                }
+            } else {
+                echo "<div class='alert alert-danger' role='alert'>Invalid Image Type or size.
             </div>";
-           }
+            }
         }
 
-            
+
 
 
         ?>
@@ -106,7 +104,7 @@ if (!isset($_SESSION['name'])) {
                         <div class="custom-file">
                             <input type="file" class="custom-file-input outline-primary" id="customFile" name="image" value="<?php echo $image ?>" />
                             <label class="custom-file-label bg-light" for="customFile">
-                                <i class="fas fa-image text-primary"></i>
+                                <i class="fas fa-image text-primary"></i><?php echo $image ?>
                                 Choose file</label>
                         </div>
                     </div>
@@ -115,7 +113,7 @@ if (!isset($_SESSION['name'])) {
             <hr />
             <div class="form-group">
                 <div class="text-center">
-                    <input class="btn btn-primary" type="submit" name="submit" value="Create Article" />
+                    <input class="btn btn-primary" type="submit" name="submit" value="Update Article" />
                     <button class="btn btn-outline-danger px-3 ml-2">Cancel</button>
                 </div>
             </div>
