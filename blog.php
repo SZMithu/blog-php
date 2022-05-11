@@ -28,7 +28,7 @@ if(isset($_REQUEST['id'])) {
   
   
 }
-$query = "SELECT name FROM users where id = $userid";
+$query = "SELECT name FROM users WHERE id = $userid";
 $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
 $name = $result['name'];
 ?>
@@ -58,56 +58,111 @@ $name = $result['name'];
             <?php echo $desc;?>
            </p>
 
-          <!-- comment php -->
+          <!-- reply/comment php -->
         <?php
         
-        
-        if((isset($_POST["submit"])) || ($_SERVER['REQUEST_METHOD'] == "POST")){
-          $comment = $_POST["textarea"];
-          $blogId = $id;
-          $name = $_SESSION["name"];
-          $commentTime = date("Y-m-d");
-          
+          if((isset($_POST["submit"])) || ($_SERVER['REQUEST_METHOD'] == "POST")){
+            
+            //reply data insert 
 
-          $query = "INSERT INTO `comments` (blog_id, user_name, comment, comment_at) 
-                    VALUES ('$id', '$name', '$comment', '$commentTime')";
-              
-          $result = mysqli_query($conn, $query);    
+          if(isset($_POST["reply"])){
+            $reply = $_POST["reply"];
+            $blogId = $id;
+            $comment_id =$_POST["comment_id"];
+            $reply_at = date("Y-m-d H:i:s");
+            $query = "INSERT INTO `replys` VALUES ('','$comment_id', '$blogId', '$reply', '$reply_at')";
+            $result = mysqli_query($conn, $query);
+           }else{
+ 
+            //comment data insert
+
+            $comment = $_POST["textarea"];
+            $blogId = $id;
+            $name = $_SESSION["name"];
+            $commentTime = date("Y-m-d H:i:s");
+            
+  
+            $query = "INSERT INTO `comments` (blog_id, user_name, comment, comment_at) 
+                      VALUES ('$id', '$name', '$comment', '$commentTime')";
+                
+            $result = mysqli_query($conn, $query);
+          }    
            
         }
-
-        ?>
-        <?php
+        //Fetch data from comments
+         $sqlComments = "SELECT * FROM comments WHERE blog_id =$id";
+         
+         $resComments = mysqli_query($conn, $sqlComments);
+         
+         $rows = mysqli_num_rows($resComments);
           
-          $sqlcomments = "SELECT * FROM `comments` WHERE blog_id = $id ORDER BY comment_at DESC";
           
-          $comments = mysqli_query($conn, $sqlcomments);
-          
-          $rows = mysqli_num_rows($comments);
           echo '<div class="pt-5">
                  <div class="section-title">
                  <h2 class="mb-5"> '.$rows.' Comments</h2>
-                 </div>';
-         
-                 while($row = mysqli_fetch_assoc($comments)){
-            echo '
-              
-                  <div class="container my-3 px-0 px-md-5">
-                    <div class="row">
-                     <div class="col-md-10 col-9 card card-body bg-light">
-                       <a href="#" class="h3 text-primary">'.$row["user_name"].'</a>
-                       <span class="float-right font-weight-bold">'.$row["comment_at"].'</span>
-                       <p class="py-2">'.$row["comment"].'</p>
-                     <button class="col-md-2 col-3 btn btn-sm btn-outline-primary">
-                      Reply
-                     </button>
-                   </div>
                  </div>
-              </div>
-            </div>
-            ';}
+                 ';
+         
+           
+        
+          while($rowComments = mysqli_fetch_assoc($resComments)){
+          
+                echo '
+              
+                <div class="container my-3 px-0 px-md-5">
+                  <div class="row">
+                      <div class="col-md-10 col-9 card card-body bg-light">
+                        <a href="#" class="h3 text-primary">'.$rowComments["user_name"],$rowComments["id"].'</a>
+                        <span class="float-right font-weight-bold">'.$rowComments["comment_at"].'</span>
+                        <p class="py-2">'.$rowComments["comment"].'</p>
+                        <div class="dropup  w-100">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Reply
+                        </button>
+                        <form action="" method="post" class="dropdown-menu p-4">
+                          <input type="text" class="form-control" id="exampleDropdownFormPassword2" name="reply">
+                          <input type="hidden" name="comment_id" value="'.$rowComments["id"].'"/>
+                          <input type="submit" class="btn btn-primary px-3" value="Send" />
+                      </form>
+                      </div>
+                     </div>
+                   </div>
+                </div>
+              </div>';
 
-        ?> 
+                $sqlReply = "SELECT * FROM replys WHERE blog_id = $id";
+                
+                $resReply = mysqli_query($conn, $sqlReply);
+                
+                $rowsReply = mysqli_num_rows($resReply);
+                while($rowReply = mysqli_fetch_assoc($resReply)){
+
+                  if($rowComments["id"] === $rowReply["comment_id"]){
+                    echo '<div class="container my-3 px-0 px-md-5">
+                            <div class="row">
+                               <div class="col-md-10 col-9 card card-body bg-light ml-auto">
+                                <a href="#" class="h3 text-primary">'.$rowReply
+                                ["comment_id"].'</a>
+                                <span class="float-right font-weight-bold">'.$rowReply["reply_at"].'</span>
+                                <p class="py-2">'.$rowReply["reply"].'</p>
+                                <div class="dropup  w-100">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Reply
+                                  </button>
+                                  <form action="" method="post" class="dropdown-menu p-4">
+                                    <input type="text" class="form-control" id="exampleDropdownFormPassword2" name="reply">
+                                    <input type="hidden" name="comment_id" value="'.$rowComments["id"].'"/>
+                                    <input type="submit" class="btn btn-primary px-3" value="Send" />
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>';
+                      
+                        }
+                        }
+                      }
+         ?> 
 
           
 

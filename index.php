@@ -71,18 +71,7 @@
                                     <img src="img/' . $image . '" class="card-img-top img-fliud" alt="" />
                                    </a>
                                 </div>
-                                    <div class="pr-4 text-right">
-                                      <a class="dropdown-toggle" href="#" id="optionDropdown" role="button" data-toggle="dropdown"     aria-haspopup="true" aria-expanded="false">
-                                      <i class="fas fa-cog"></i>
-                                      </a>
-                                      <div class="dropdown-menu" aria-labelledby="optionDropdown">
-                                       <a class="dropdown-item" href="#">Edit</a>
-                                       <a class="dropdown-item" href="#">Unpublish</a>
-                                       <a class="dropdown-item text-danger" href="#"><strong>Delete</strong></a>
-                                      </div>
-                                    </div>
-                                  
-                                
+                                    
                                   <div class="card-body mt-0 pt-2 mx-4">
                                          <h4 class="card-title"><strong>' . $row["title"] . '</strong></h4>
                                          <hr />

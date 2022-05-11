@@ -42,11 +42,11 @@ if(isset($_SESSION['name'])){
 
                    $create_at = date("Y-m-d H:i:s"); 
                    
-                   $sql = "SELECT email FROM `users` WHERE email = $email";
-                   $rows = mysqli_query($conn, $sql);
-                   $row = mysqli_num_rows($rows);
+                   $sql = "SELECT * FROM `users` WHERE email = '$email'";
+                   $res = mysqli_query($conn, $sql);
+                   $row = mysqli_num_rows($res);
 
-                  if(!$rows){
+                  if($row == 0){
                     $query = "INSERT INTO `users` (name, email, phone, password, image, created_at) VALUES('$name', '$email', '', '".md5($password)."', '', '$create_at')";
 
                     if($password == $password2){
@@ -58,10 +58,10 @@ if(isset($_SESSION['name'])){
                       }
  
                     }else{
-                     echo "<div class='alert alert-danger' role='alert'>Password not match</div>";
+                     echo "<div class='alert alert-danger' role='alert'><h4>Password not match</h4></div>";
                     }
                   }else{
-                    echo "Email already exist";
+                    echo "<div class='alert alert-danger' role='alert'><h4>Email already exist</h4></div>";
                   }
                    
                 }
@@ -80,7 +80,7 @@ if(isset($_SESSION['name'])){
                   <label for="email">
                     <i class="fas fa-envelope textBlue"></i> Email
                   </label>
-                  <input type="text" class="form-control" id="email" name="email" required/>
+                  <input type="email" class="form-control" id="email" name="email" required/>
                 </div>
                 <div class="form-group">
                   <label for="password">

@@ -86,7 +86,7 @@ if (!isset($_SESSION['name'])) {
                               </div>';
                               }
                            } else {
-                            echo "<h1>You have no blog yeat!</h1>";
+                            echo "<div class='text-center dashboard_no_blog_div w-100'><h1>You have no blog yeat!</h1></div>";
                             }
 
                             ?>
